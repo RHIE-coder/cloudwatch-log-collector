@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs"
-	"github.com/aws/aws-sdk-go/aws"
 )
 
 type CloudWatchLogOutputFormat struct {
@@ -39,19 +38,19 @@ func NewClient2(accessKey string, secretKey string, regionName string) *cloudwat
 	return cloudwatchlogs.NewFromConfig(cfg)
 }
 
-func NewClient3(accessKey string, secretKey string, regionName string) aws.Config {
-	creds := credentials.NewStaticCredentialsProvider(accessKey, secretKey, "")
+// func NewClient3(accessKey string, secretKey string, regionName string) aws.Config {
+// 	creds := credentials.NewStaticCredentialsProvider(accessKey, secretKey, "")
 
-	cfg, _ := config.LoadDefaultConfig(context.TODO(),
-		config.WithCredentialsProvider(creds),
-		config.WithRegion(regionName),
-	)
+// 	cfg, _ := config.LoadDefaultConfig(context.TODO(),
+// 		config.WithCredentialsProvider(creds),
+// 		config.WithRegion(regionName),
+// 	)
 
-	fmt.Println(*cfg)
-	fmt.Println(reflect.TypeOf(cfg))
+// 	fmt.Println(*cfg)
+// 	fmt.Println(reflect.TypeOf(cfg))
 
-	return cfg
-}
+// 	return cfg
+// }
 
 func (cw *CloudWatch) NewClient(accessKey string, secretKey string, regionName string) {
 	creds := credentials.NewStaticCredentialsProvider(accessKey, secretKey, "")
